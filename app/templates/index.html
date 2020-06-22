@@ -90,7 +90,7 @@
                             <div class="btnBox">
                                 <i id="startbtn" class="fa fa-play" aria-hidden="true"></i>
                                 <i id="pausebtn" class="fa fa-pause" aria-hidden="true"></i>
-                                <i id="stopbtn" class="fa fa-stop" aria-hidden="true"></i>
+                                <i id="stopbtn" class="fa fa-stop" name="{{ post.pk }}" aria-hidden="true"></i>
                             </div>
                         </div>
                     
@@ -252,15 +252,35 @@ function buttonEvt(){
 
   // stop btn
   $("#stopbtn").click(function(){
+    var pk = $(this).attr('name')
+
     if(time != 0){
       $(".fa").css("color","#FAED7D")
       this.style.color = "#4C4C4C";
       clearInterval(timer);
       starFlag = true;
-      console.log(time);
+
+      $.ajax({
+        type: "POST",
+        url: "{% url 'timesave' %}",
+        data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+        dataType: "json",
+
+        success: function (response) {
+            console.log(time);
+          alert(response.message);
+        },
+        error: function (request, status, error) {
+          alert('로그인이 필요합니다.')
+        }
+      });
+      console.log('2');
       time = 0;
       init();
     }
+
+    
+
   });
 }
 
