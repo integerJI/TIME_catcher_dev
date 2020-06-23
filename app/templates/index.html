@@ -282,7 +282,7 @@ function buttonEvt(){
       $.ajax({
         type: "POST",
         url: "{% url 'timesave' %}",
-        data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+        data: { 'pk': pk, 'csrfmiddlewaretoken': '{{ csrf_token }}', 'time': time },
         dataType: "json",
 
         success: function (response) {
@@ -293,7 +293,6 @@ function buttonEvt(){
           alert('로그인이 필요합니다.')
         }
       });
-      console.log('2');
       time = 0;
       init();
     }
