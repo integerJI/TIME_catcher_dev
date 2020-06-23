@@ -16,30 +16,11 @@ def index(request):
 @require_POST
 def timesave(request):
     if request.method == 'POST':
+        
         timesave = Timesave()
         timesave.save_user = User.objects.get(username = request.user.get_username())
         timesave.save_date = request.POST.get('time')
-        print("aaaaaaaaaaaaaaa")
-        print(timesave.save_date)
-        print("aaaaaaaaaaaaaaa")
         timesave.save()
-        context = {'time' : timesave.save_date}
-        return HttpResponse(json.dumps(context), content_type='application/json')
 
-# @login_required
-# @require_POST
-# def like(request):
-#     if request.method == 'POST':
-#         user = request.user 
-#         create_user = request.POST.get('pk', None)
-#         post = get_object_or_404(Post, id=create_user)
+        return HttpResponse(content_type='application/json')
 
-#         if post.post_likes.filter(id = user.id).exists():
-#             post.post_likes.remove(user) 
-#             message = '좋아요 취소'
-#         else:
-#             post.post_likes.add(user)
-#             message = '좋아요!'
-
-#     context = {'likes_count' : post.total_likes, 'message' : message}
-#     return HttpResponse(json.dumps(context), content_type='application/json')
