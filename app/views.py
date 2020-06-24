@@ -10,7 +10,13 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
 def index(request):
-    return render(request, 'index.html')
+    timesave = Timesave.objects.all()
+
+    context = {
+        'timesave' : timesave,
+    }
+
+    return render(request, 'index.html', context=context)
 
 @login_required
 @require_POST
@@ -19,6 +25,7 @@ def timesave(request):
         
         timesave = Timesave()
         timesave.save_user = User.objects.get(username = request.user.get_username())
+        
         timesave.save_date = request.POST.get('time')
         timesave.save()
 
