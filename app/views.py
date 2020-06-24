@@ -8,12 +8,17 @@ except ImportError:
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.db.models import Sum
+
 
 def index(request):
     timesave = Timesave.objects.all()
+    sum = Timesave.objects.aggregate(Sum('save_date'))
 
+    print(sum)
     context = {
         'timesave' : timesave,
+        'sum' : sum,
     }
 
     return render(request, 'index.html', context=context)
