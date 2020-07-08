@@ -12,27 +12,5 @@ from django.db.models import Sum
 
 
 def index(request):
-    timesave = Timesave.objects.all()
-    sum = Timesave.objects.aggregate(Sum('save_date'))
-
-    print(sum)
-    context = {
-        'timesave' : timesave,
-        'sum' : sum,
-    }
-
-    return render(request, 'index.html', context=context)
-
-@login_required
-@require_POST
-def timesave(request):
-    if request.method == 'POST':
-        
-        timesave = Timesave()
-        timesave.save_user = User.objects.get(username = request.user.get_username())
-        
-        timesave.save_date = request.POST.get('time')
-        timesave.save()
-
-        return HttpResponse(content_type='application/json')
+    return render(request, 'index.html')
 

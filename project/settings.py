@@ -126,3 +126,12 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# 로그인 페이지 지정
+LOGIN_URL = '/signin/'
+
+# 로그인 완료 후 나올 페이지
+LOGIN_REDIRECT_URL = 'index'
+
+# 로그아웃 후 나올 페이지
+LOGOUT_REDIRECT_URL = 'signin'

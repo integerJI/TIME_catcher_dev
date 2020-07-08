@@ -1,18 +1,12 @@
-<h1>회원가입</h1>
+<form method="POST" action="{% url 'signup'%}" enctype="multipart/form-data">
+    {%csrf_token%}
 
-<form method="POST" action="{% url 'signup'%}">
-    {% csrf_token %}
-    아이디:
+    {{form.as_p}}
+    
     <br>
-    <input name="username"  type="text" >
-    <br>
-    비밀번호:
-    <br>
-    <input name="password1"  type="password" >
-    <br>
-    비밀번호 확인:
-    <br>
-    <input name="password2"  type="password" >
-    <br>
-    <br>
-    <input class="btn btn-primary" type="submit" value="회원가입">
+    <button type="submit" class="form-control">Sign Up</button>
+</form>
+<hr>
+<a href="{% url 'signin' %}">
+    <button type="submit" class="form-control">Go back</button>
+</a>
