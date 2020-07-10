@@ -11,12 +11,9 @@
     <button type="submit" class="form-control">Go back</button>
 </a> -->
 
-
-
 <form method="POST" action="/user/signup/" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    <ul class="errorlist"><li>필수 항목입니다.</li></ul>
+{%csrf_token%}
+<ul class="errorlist"><li>필수 항목입니다.</li></ul>
 <p><label for="id_user-username">사용자 이름:</label> <input type="text" name="user-username" class="form-control" placeholder="15자 이내로 입력 가능합니다." maxlength="150" autofocus required id="id_user-username"> <span class="helptext">150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</span></p>
 <ul class="errorlist"><li>필수 항목입니다.</li></ul>
 <p><label for="id_user-password1">비밀번호:</label> <input type="password" name="user-password1" required id="id_user-password1"> <span class="helptext"><ul><li>다른 개인정보와 비슷한 비밀번호는 사용할 수 없습니다.</li><li>비밀번호는 최소 8자 이상이어야 합니다.</li><li>비밀번호는 일상적으로 사용되는 비밀번호일 수 없습니다.</li><li>비밀번호는 전부 숫자로 할 수 없습니다.</li></ul></span></p>
@@ -24,11 +21,10 @@
 <p><label for="id_user-password2">비밀번호 확인:</label> <input type="password" name="user-password2" required id="id_user-password2"> <span class="helptext">확인을 위해 이전과 동일한 비밀번호를 입력하세요. </span></p><p><label for="id_profile-nick">이름:</label> <input type="text" name="profile-nick" class="form-control" maxlength="50" id="id_profile-nick"></p>
 <p><label for="id_profile-email">e-mail:</label> <input type="email" name="profile-email" class="form-control" maxlength="50" id="id_profile-email"></p>
 <p><label for="id_profile-birth_date">생일:</label> <input type="text" name="profile-birth_date" class="form-control" id="id_profile-birth_date"></p>
-    
-    <br>
-    <button type="submit" class="form-control">Sign Up</button>
+<br>
+<button type="submit" class="form-control">Sign Up</button>
 </form>
 <hr>
 <a href="/user/signin/">
-    <button type="submit" class="form-control">Go back</button>
+<button type="submit" class="form-control">Go back</button>
 </a>
