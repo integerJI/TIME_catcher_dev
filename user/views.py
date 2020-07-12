@@ -19,20 +19,23 @@ from .models import Profile
 def signup(request):
     form = UserCreationMultiForm(request.POST, request.FILES)
     if request.method == 'POST':
+        userCheck = request.POST['user-username']
         if request.POST['user-password1'] == request.POST['user-password2']:
             if form.is_valid(): 
                 user = form['user'].save()
                 profile = form['profile'].save(commit=False)
                 profile.user = user
-                profile.email = request.POST['profile-email']
+                profile.email = request.POST['user-username']
                 profile.save()
-                print('회원가입성공')
+                print('회원가입 성공')
                 return redirect('signin')
             else:
-                email = request.POST['profile-email']
-                email = Profile.objects.get(email=email)
-                print('아이디 중복')
-                messages.info(request, '아이디가 중복됩니다.')
+                if User.objects.get(username=userCheck):
+                    print('아이디 중복')
+                    messages.info(request, '아이디가 중복됩니다.')
+                    return render(request, 'signup.html')        
+                print('회원가입 실패')
+                messages.info(request, '회원가입에 실패했습니다.')
                 return render(request, 'signup.html')
         else:
             print('비밀번호가 달라서 실패')
