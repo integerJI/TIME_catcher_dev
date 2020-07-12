@@ -25,7 +25,6 @@ def signup(request):
                 user = form['user'].save()
                 profile = form['profile'].save(commit=False)
                 profile.user = user
-                profile.email = request.POST['user-username']
                 profile.save()
                 print('회원가입 성공')
                 return redirect('signin')
