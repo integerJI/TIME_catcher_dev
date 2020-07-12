@@ -19,9 +19,6 @@ from .models import Profile
 def signup(request):
     form = UserCreationMultiForm(request.POST, request.FILES)
     if request.method == 'POST':
-        print(request.POST['profile-email'],'이메일이메일이메일')
-        print(request.POST['user-password1'],'aaaaaaaaaaaaaaaaaa')
-        print(request.POST['user-password2'],'bbbbbbbbbbbbbbbbbb')
         if request.POST['user-password1'] == request.POST['user-password2']:
             if form.is_valid(): 
                 user = form['user'].save()
