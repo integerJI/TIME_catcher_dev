@@ -24,11 +24,12 @@ def signup(request):
                 user = form['user'].save()
                 profile = form['profile'].save(commit=False)
                 profile.user = user
+                profile.email = request.POST['profile-email']
                 profile.save()
                 return redirect('signin')
             else:
-                user = request.POST['user-username']
-                user = User.objects.get(username=user)
+                user = request.POST['profile-email']
+                user = User.objects.get(email=user)
                 messages.info(request, '아이디가 중복됩니다.')
                 return render(request, 'signup.html')
         else:
