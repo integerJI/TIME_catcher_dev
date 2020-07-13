@@ -20,6 +20,8 @@ def signup(request):
     form = UserCreationMultiForm(request.POST, request.FILES)
     if request.method == 'POST':
         userCheck = request.POST['user-username']
+        print(request.POST['YEAR'])
+        print(request.POST['MONTH'])
         if request.POST['user-password1'] == request.POST['user-password2']:
             if form.is_valid(): 
                 user = form['user'].save()
