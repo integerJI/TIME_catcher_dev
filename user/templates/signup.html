@@ -142,13 +142,13 @@
       <input type="text" name="profile-birth_date" class="form-control" id="id_profile-birth_date">
     </div>
 
+    <div class="form-group">
+      <label for="formGroupExampleInput">생년월일</label>
+      <select name="year" id="year" title="년도" class="custom-select"></select>
+      <select name="month" id="month" title="월" class="custom-select"></select>
+      <select name="day" id="day" title="일" class="custom-select"></select>
+    </div>
 
-    <tr>
-      <td>
-          <select name="YEAR" id="YEAR" title="년도" class="select w80"></select>    
-          <select name="MONTH" id="MONTH" title="월" class="select w80"></select>
-      </td>
-  </tr>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">가입하기</button>
   </form>
@@ -156,27 +156,38 @@
 
 <script>
 
-  $(document).ready(function(){
-      setDateBox();
-  });    
+  $(document).ready(function () {
+    setDateBox();
+  });
 
   // select box 연도 , 월 표시
-  function setDateBox(){
-      var dt = new Date();
-      var year = "";
-      var com_year = dt.getFullYear();
-      // 발행 뿌려주기
-      $("#YEAR").append("<option value=''>년도</option>");
-      // 올해 기준으로 -1년부터 +5년을 보여준다.
-      for(var y = (com_year-50); y <= (com_year+1); y++){
-          $("#YEAR").append("<option value='"+ y +"'>"+ y + " 년" +"</option>");
-      }
-      // 월 뿌려주기(1월부터 12월)
-      var month;
-      $("#MONTH").append("<option value=''>월</option>");
-      for(var i = 1; i <= 12; i++){
-          $("#MONTH").append("<option value='"+ i +"'>"+ i + " 월" +"</option>");
-      }
+  function setDateBox() {
+    var dt = new Date();
+    var year = "";
+    var com_year = dt.getFullYear();
+
+    // 발행 뿌려주기
+    $("#year").append("<option value=''>년도</option>");
+
+    // 올해 기준으로 -50년부터 +1년을 보여준다.
+    for (var y = (com_year - 50); y <= (com_year + 1); y++) {
+      $("#year").append("<option value='" + y + "'>" + y + " 년" + "</option>");
+    }
+
+    // 월 뿌려주기(1월부터 12월)
+    var month;
+    $("#month").append("<option value=''>월</option>");
+    for (var i = 1; i <= 12; i++) {
+      $("#month").append("<option value='" + i + "'>" + i + " 월" + "</option>");
+    }
+
+    // 일 뿌려주기(1일부터 31일)
+    var day;
+    $("#day").append("<option value=''>일</option>");
+    for (var i = 1; i <= 31; i++) {
+      $("#day").append("<option value='" + i + "'>" + i + " 일" + "</option>");
+    }
+
   }
 
 </script>
