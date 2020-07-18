@@ -14,3 +14,5 @@ from django.db.models import Sum
 def index(request):
     return render(request, 'index.html')
 
+def subpage(request):
+    return render(request, 'subpage.html')
