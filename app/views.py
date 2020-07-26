@@ -16,3 +16,6 @@ def index(request):
 
 def subpage(request):
     return render(request, 'subpage.html')
+
+def mail(request):
+    return render(request, 'mail.html')
